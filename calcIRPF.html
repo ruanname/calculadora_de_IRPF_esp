@@ -1,0 +1,36 @@
+<meta charset="UTF-8"> 
+
+<script type="text/javascript">
+
+	var sueldo = prompt("¿Cuánto recibes al mes?");; 
+	var pagas = prompt("¿Cuántas pagas recibes al año?"); 
+	var tasa; 
+	var renta = sueldo * pagas;
+	var impuesto;
+	
+	function calcTasa(sueldo, pagas) {
+		 
+		if ((renta >= 0) && (renta <= 12450)) {
+			return tasa = 19;
+		} else if ((renta > 12450) && (renta <= 20200)) {
+			return tasa = 24;
+		} else if ((renta > 20200) && (renta <= 35200)) { 
+			return tasa = 30;
+		} else if ((renta > 35200) && (renta <= 60000)) {
+			return tasa = 37;
+		} else if (renta > 60000) {
+			return tasa = 45;
+		} 
+	}  
+
+	function calcImpuesto() {
+		var a = renta / 100; 
+		impuesto = a * tasa; 
+		return impuesto
+	} 
+
+	calcTasa(); 
+	calcImpuesto(); 
+	document.write("Su IRPF es de " + impuesto + "€"); 
+	
+</script>
