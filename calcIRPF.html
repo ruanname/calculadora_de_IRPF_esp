@@ -3,34 +3,60 @@
 <script type="text/javascript">
 
 	var sueldo = prompt("¿Cuánto recibes al mes?");; 
-	var pagas = prompt("¿Cuántas pagas recibes al año?"); 
-	var tasa; 
-	var renta = sueldo * pagas;
-	var impuesto;
-	
-	function calcTasa(sueldo, pagas) {
-		 
-		if ((renta >= 0) && (renta <= 12450)) {
-			return tasa = 19;
-		} else if ((renta > 12450) && (renta <= 20200)) {
-			return tasa = 24;
-		} else if ((renta > 20200) && (renta <= 35200)) { 
-			return tasa = 30;
-		} else if ((renta > 35200) && (renta <= 60000)) {
-			return tasa = 37;
-		} else if (renta > 60000) {
-			return tasa = 45;
-		} 
-	}  
+	var pagas = prompt("¿Cuántas pagas recibes al año?");
+	var renta = sueldo * pagas; 
+	var tasa = [19, 24, 30, 37, 45]; 
+	var impuesto = 0;
 
-	function calcImpuesto() {
-		var a = renta / 100; 
-		impuesto = a * tasa; 
-		return impuesto
+	var tiposSueldos = [12450, 20200, 35200, 60000]
+
+	var impuesto0 = 0;
+	var impuesto1 = 0;
+	var impuesto2 = 0;
+	var impuesto3 = 0; 
+	var impuesto4 = 0; 
+	 
+
+	
+	if (true) {
+		if ((renta - tiposSueldos[0]) > 0) {
+			impuesto0 = (tiposSueldos[0] / 100) * 19;
+		} else {
+			impuesto0 = (renta / 100) * 19; 
+		}
+	} 
+	
+	if (renta > tiposSueldos[0]) { 
+		if ((renta - tiposSueldos[1]) > 0) {
+			impuesto1 = ((tiposSueldos[1] - tiposSueldos[0]) / 100) * 24;
+		} else {
+			impuesto1 = ((renta - tiposSueldos[0]) / 100) * 24; 
+		}	
 	} 
 
-	calcTasa(); 
-	calcImpuesto(); 
-	document.write("Su IRPF es de " + impuesto + "€"); 
-	
+	if (renta > tiposSueldos[1]) { 
+		if (renta - tiposSueldos[2] > 0) {
+			impuesto2 = ((tiposSueldos[2] - tiposSueldos[1]) / 100) * 30;
+		} else {
+			impuesto2 = ((renta - tiposSueldos[1]) / 100) * 30;
+		}	
+	} 
+
+	if (renta > tiposSueldos[2]) { 
+		if (renta - tiposSueldos[3] > 0) {
+			impuesto3 =((tiposSueldos[3] - tiposSueldos [2]) / 100) * 37;
+		} else { 
+		impuesto3 = ((renta - tiposSueldos[2]) / 100) * 37; 
+		}
+	} 
+
+	if (renta > tiposSueldos[3]) {
+		impuesto4 = ((renta - tiposSueldos[3]) / 100) * 45;
+	}
+
+	impuesto = impuesto0 + impuesto1 + impuesto2 + impuesto3 + impuesto4;  
+
+
+	document.write("Su IRPF es de " + impuesto + "€ <br>"); 
+	document.write("Su sueldo neto es de " + (renta - impuesto) + "€"); 
 </script>
